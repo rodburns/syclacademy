@@ -60,6 +60,7 @@ void parallel_add(std::vector<T>& inputA, std::vector<T>& inputB,
   auto copyInputB = usmQueue.memcpy(inputBPtr, inputB.data(), sizeInBytes);
   auto fillOutput = usmQueue.fill(outputPtr, 0, size);
 
+
   usmQueue.submit([&](handler &cgh) {
     cgh.depends_on(copyInputA);
     cgh.depends_on(copyInputB);
